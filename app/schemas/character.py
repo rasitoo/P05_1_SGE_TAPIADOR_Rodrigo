@@ -10,8 +10,8 @@ class CharacterCreate(SQLModel):
     species : Optional[str]
     gender : Optional[str]
     imageUri : Optional[str]
-    locationid : int
-    originid : Optional[int]
+    location_id : int
+#    origin_id : Optional[int]
 
 class CharacterResponse(CharacterCreate):
     id: int
@@ -23,5 +23,5 @@ class CharacterUpdate(SQLModel):
     species : Optional[str]
     gender : Optional[str]
     imageUri : Optional[str]
-    locationid : Optional[int]
-    originid : Optional[int]
+    location_id : Optional[int]
+#    origin_id : Optional[int]

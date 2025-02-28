@@ -17,7 +17,7 @@ async def create_location(location_schema: LocationCreate,session: Session = Dep
     session.refresh(location)
     return LocationResponse(**location.model_dump())
 
-@router.get("/", response_model=LocationResponse)
+@router.get("/", response_model=list[LocationResponse])
 async def read_locations(session: Session = Depends(get_session)):
     return session.exec(select(Location)).all()
 
@@ -40,7 +40,7 @@ async def update_location(id: int, location_data: LocationUpdate,session: Sessio
     session.commit()
     session.refresh(location)
     return location
-@router.patch("/{id}", response_model=dict)
+@router.delete("/{id}", response_model=dict)
 async def delete_location(id: int,session: Session = Depends(get_session)):
     location = session.get(Location,id)
 
