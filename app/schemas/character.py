@@ -12,11 +12,14 @@ class CharacterCreate(SQLModel):
     species : Optional[str]
     gender : Optional[str]
     imageUri : Optional[str]
-    location_id : Optional[int]
-    origin_id : Optional[int]
+    location_id : int | None = None
+    origin_id : int | None = None
 
 class CharacterResponse(CharacterCreate):
     id: int
+
+
+class CharacterExtendedResponse(CharacterCreate):
     location : Optional[Location]
     origin : Optional[Location]
 

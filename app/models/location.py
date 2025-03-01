@@ -1,5 +1,4 @@
-from sqlalchemy.orm import foreign
-from sqlmodel import SQLModel, Relationship, Field,ForeignKey
+from sqlmodel import SQLModel, Relationship, Field
 from typing_extensions import Optional
 
 from app.models.character import Character

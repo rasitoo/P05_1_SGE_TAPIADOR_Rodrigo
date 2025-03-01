@@ -2,3 +2,4 @@ sqlmodel==0.0.22
 pydantic-settings==2.8.0
 typing_extensions==4.12.2
 fastapi[standard]
+psycopg2-binary

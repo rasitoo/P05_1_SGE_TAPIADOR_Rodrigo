@@ -12,6 +12,8 @@ class LocationCreate(SQLModel):
 
 class LocationResponse(LocationCreate):
     id : int
+
+class LocationExtendedResponse(LocationResponse):
     characters : Optional[list[Character]]
     citizens : Optional[list[Character]]
 

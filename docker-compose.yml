@@ -1,0 +1,15 @@
+services:
+  web:
+    image: apirodrigo
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_TYPE=postgres
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=characterapi
+      - POSTGRES_PASSWORD=characterapi
+      - POSTGRES_USER=characterapi

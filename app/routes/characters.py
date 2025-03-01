@@ -3,7 +3,7 @@ from http.client import HTTPException
 from fastapi import APIRouter, Depends
 from sqlmodel import select, Session
 
-from app.schemas.character import CharacterResponse, CharacterCreate, CharacterUpdate
+from app.schemas.character import CharacterResponse, CharacterCreate, CharacterUpdate, CharacterExtendedResponse
 from app.models.character import Character
 from app.db.session import get_session
 
@@ -12,8 +12,10 @@ router = APIRouter(prefix="/characters", tags=["Characters"])
 @router.post("/", response_model=CharacterResponse)
 async def create_character(character_schema: CharacterCreate,session: Session = Depends(get_session)):
     character = Character(**character_schema.model_dump()) #model_dump convierte los datos del schema en un diccionario y el constructor de Character crea un objeto con ese diccionario
-    if character.location_id is None:
-        raise HTTPException(status_code=400, detail="location_id is required")
+    if character.location_id == 0:
+        character.location_id = None
+    if character.origin_id == 0:
+        character.origin_id = None
     session.add(character)
     session.commit()
     session.refresh(character)
@@ -23,7 +25,7 @@ async def create_character(character_schema: CharacterCreate,session: Session = 
 async def read_characters(session: Session = Depends(get_session)):
     return session.exec(select(Character)).all()
 
-@router.get("/{id}", response_model=CharacterResponse)
+@router.get("/{id}", response_model=CharacterExtendedResponse)
 async def read_character(id: int,session: Session = Depends(get_session)):
     return session.get(Character,id)
 

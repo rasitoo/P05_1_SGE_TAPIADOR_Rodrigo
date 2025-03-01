@@ -1,4 +1,4 @@
-from sqlmodel import SQLModel, Relationship, Field,ForeignKey
+from sqlmodel import SQLModel, Relationship, Field
 from typing_extensions import Optional
 #https://stackoverflow.com/questions/7548033/how-to-define-two-relationships-to-the-same-table-in-sqlalchemy
 #https://stackoverflow.com/questions/71464757/what-does-sa-relationship-kwargs-lazy-selectin-means-on-sqlmodel-with-f

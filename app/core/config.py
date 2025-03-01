@@ -4,7 +4,6 @@ from pydantic_settings import BaseSettings
 
 
 class Config(BaseSettings):
-    database_url: str = "sqlite:///./database.db"
     debug: bool = False
     db_type: str | None = "sqlite"
 

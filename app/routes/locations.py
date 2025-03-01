@@ -5,7 +5,7 @@ from sqlmodel import select, Session
 
 from app.db.session import get_session
 from app.models.location import Location
-from app.schemas.location import LocationResponse, LocationCreate, LocationUpdate
+from app.schemas.location import LocationResponse, LocationCreate, LocationUpdate, LocationExtendedResponse
 
 router = APIRouter(prefix="/locations", tags=["Locations"])
 
@@ -21,7 +21,7 @@ async def create_location(location_schema: LocationCreate,session: Session = Dep
 async def read_locations(session: Session = Depends(get_session)):
     return session.exec(select(Location)).all()
 
-@router.get("/{id}", response_model=LocationResponse)
+@router.get("/{id}", response_model=LocationExtendedResponse)
 async def read_location(id: int,session: Session = Depends(get_session)):
     return session.get(Location,id)
 
