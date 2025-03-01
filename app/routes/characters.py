@@ -17,7 +17,7 @@ async def create_character(character_schema: CharacterCreate,session: Session = 
     session.add(character)
     session.commit()
     session.refresh(character)
-    return CharacterResponse(**character.model_dump())
+    return CharacterResponse.model_validate(character)
 
 @router.get("/", response_model=list[CharacterResponse])
 async def read_characters(session: Session = Depends(get_session)):

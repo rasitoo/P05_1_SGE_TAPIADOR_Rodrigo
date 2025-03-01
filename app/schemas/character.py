@@ -2,6 +2,8 @@ from typing import Optional
 
 from sqlmodel import  SQLModel
 
+from app.models.location import Location
+
 
 class CharacterCreate(SQLModel):
     name : str
@@ -10,11 +12,13 @@ class CharacterCreate(SQLModel):
     species : Optional[str]
     gender : Optional[str]
     imageUri : Optional[str]
-    location_id : int
-#    origin_id : Optional[int]
+    location_id : Optional[int]
+    origin_id : Optional[int]
 
 class CharacterResponse(CharacterCreate):
     id: int
+    location : Optional[Location]
+    origin : Optional[Location]
 
 class CharacterUpdate(SQLModel):
     name : Optional[str]
@@ -24,4 +28,4 @@ class CharacterUpdate(SQLModel):
     gender : Optional[str]
     imageUri : Optional[str]
     location_id : Optional[int]
-#    origin_id : Optional[int]
+    origin_id : Optional[int]

@@ -11,15 +11,15 @@ class Location(SQLModel, table=True):
     name : Optional[str]
     type : Optional[str]
     dimension : Optional[str]
-    characters : list[Character] = Relationship(
+    characters : Optional[list[Character]] = Relationship(
         back_populates="location",
         sa_relationship_kwargs={
-            "primaryjoin": "Location.id==foreign(Character.location_id)",
+            "primaryjoin": "Location.id==foreign(Character.location_id)"
         }
     )
-#    citizens : list[Character] = Relationship(
-#        back_populates="origin",
-#        sa_relationship_kwargs={
-#            "primaryjoin": "Location.id==foreign(Character.origin_id)",
-#        }
-#    )
+    citizens : Optional[list[Character]] = Relationship(
+        back_populates="origin",
+        sa_relationship_kwargs={
+            "primaryjoin": "Location.id==foreign(Character.origin_id)"
+        }
+    )

@@ -2,6 +2,8 @@ from typing import Optional
 
 from sqlmodel import SQLModel
 
+from app.models.character import Character
+
 
 class LocationCreate(SQLModel):
     name : str
@@ -10,6 +12,8 @@ class LocationCreate(SQLModel):
 
 class LocationResponse(LocationCreate):
     id : int
+    characters : Optional[list[Character]]
+    citizens : Optional[list[Character]]
 
 class LocationUpdate(SQLModel):
     name : Optional[str]

@@ -15,7 +15,7 @@ async def create_location(location_schema: LocationCreate,session: Session = Dep
     session.add(location)
     session.commit()
     session.refresh(location)
-    return LocationResponse(**location.model_dump())
+    return LocationResponse.model_validate(location) #model_validate de sqlmodel valida un ojeto de pydantic para transformarlo en otro
 
 @router.get("/", response_model=list[LocationResponse])
 async def read_locations(session: Session = Depends(get_session)):
